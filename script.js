@@ -4,12 +4,38 @@
 // - Scroll to top button
 // - Scroll-triggered animations
 // - Dynamic current year
+// - Dark/Light theme toggle
 
 const navToggle = document.getElementById("nav-toggle");
 const navMenu = document.getElementById("nav-menu");
 const navLinks = document.querySelectorAll(".nav-link");
 const scrollTopBtn = document.getElementById("scroll-top");
 const animateEls = document.querySelectorAll("[data-animate]");
+const themeToggle = document.getElementById("theme-toggle");
+
+// Dark/Light theme toggle
+if (themeToggle) {
+  // Check for saved theme preference or default to 'light'
+  const currentTheme = localStorage.getItem("theme") || "light";
+  document.documentElement.setAttribute("data-theme", currentTheme);
+  updateThemeIcon(currentTheme);
+
+  themeToggle.addEventListener("click", () => {
+    const theme = document.documentElement.getAttribute("data-theme");
+    const newTheme = theme === "dark" ? "light" : "dark";
+    
+    document.documentElement.setAttribute("data-theme", newTheme);
+    localStorage.setItem("theme", newTheme);
+    updateThemeIcon(newTheme);
+  });
+}
+
+function updateThemeIcon(theme) {
+  const icon = themeToggle.querySelector(".theme-icon");
+  if (icon) {
+    icon.textContent = theme === "dark" ? "◑" : "◐";
+  }
+}
 
 // Mobile navigation toggle
 if (navToggle && navMenu) {

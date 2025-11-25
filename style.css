@@ -26,6 +26,19 @@
   --nav-height: 70px;
 }
 
+/* Dark mode variables */
+[data-theme="dark"] {
+  --color-bg: #0f172a;
+  --color-surface: #1e293b;
+  --color-primary: #818cf8;
+  --color-primary-soft: rgba(129, 140, 248, 0.12);
+  --color-accent: #fb923c;
+  --color-text: #f1f5f9;
+  --color-muted: #94a3b8;
+  --color-border: #334155;
+  --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.3);
+}
+
 *,
 *::before,
 *::after {
@@ -42,6 +55,7 @@ body {
   background-color: var(--color-bg);
   color: var(--color-text);
   line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 img {
@@ -273,6 +287,36 @@ section {
 .nav-toggle.open span:nth-child(3) {
   transform: rotate(-45deg);
   translate: 0 -6px;
+}
+
+/* Theme toggle button */
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.3s ease, border-color 0.3s ease;
+  margin-right: 1rem;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+  border-color: var(--color-primary);
+}
+
+.theme-icon {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+[data-theme="dark"] .theme-icon {
+  transform: rotate(180deg);
 }
 
 /* Hero */
